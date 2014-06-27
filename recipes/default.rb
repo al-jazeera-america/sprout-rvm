@@ -44,7 +44,7 @@ rubies.each do |version, options|
 end
 
 execute "making #{node["rvm"]["default_ruby"]} with rvm the default" do
-  not_if { node["rvm"]["default_ruby"].nil? }
-  command "#{::RVM_COMMAND} alias create default #{node["rvm"]["default_ruby"]}"
+  not_if { node["sprout"]["rvm"]["default_ruby"].nil? }
+  command "#{::RVM_COMMAND} alias create default #{node["sprout"]["rvm"]["default_ruby"]}"
   user node['current_user']
 end
