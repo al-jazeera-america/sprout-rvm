@@ -1,8 +1,6 @@
 rubies       = node['sprout']['rvm']['rubies']
 default_ruby = node['sprout']['rvm']['default_ruby']
 
-rvm_version  = version_string_for("rvm")
-
 ::RVM_HOME = "#{node['sprout']['home']}/.rvm"
 ::RVM_COMMAND = "#{::RVM_HOME}/bin/rvm"
 
@@ -15,7 +13,7 @@ run_unless_marker_file_exists(marker_version_string_for("rvm")) do
   end
 
   [
-    "\\curl -L https://get.rvm.io | bash -s -- --version #{rvm_version}",
+    "\curl -sSL https://get.rvm.io | bash -s stable --ruby",
     "#{RVM_COMMAND} --version | grep Wayne"
   ].each do |rvm_cmd|
     execute rvm_cmd do
