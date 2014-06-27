@@ -13,7 +13,7 @@ run_unless_marker_file_exists("rvm") do
   end
 
   [
-    "\curl -sSL https://get.rvm.io | bash -s stable --ruby",
+    "\\curl -sSL https://get.rvm.io | bash -s stable --ruby",
     "#{RVM_COMMAND} --version | grep Wayne"
   ].each do |rvm_cmd|
     execute rvm_cmd do
@@ -22,19 +22,13 @@ run_unless_marker_file_exists("rvm") do
     end
   end
 
-  template "#{node['sprout']['home']}/.rvmrc" do
-    source 'rvmrc.erb'
-    owner node['current_user']
-    group node['etc']['passwd'][node['current_user']]['gid']
-    variables ( { :env_vars => node["rvm"]["rvmrc"]["env_vars"] } )
-  end
-
-  %w{readline autoconf openssl zlib}.each do |rvm_pkg|
-    execute "install rvm pkg: #{rvm_pkg}" do
-      command "#{::RVM_COMMAND} pkg install --verify-downloads 1 #{rvm_pkg}"
-      user node['current_user']
-    end
-  end
+  # Do we want these?
+  # %w{readline autoconf openssl zlib}.each do |rvm_pkg|
+  #   execute "install rvm pkg: #{rvm_pkg}" do
+  #     command "#{::RVM_COMMAND} pkg install --verify-downloads 1 #{rvm_pkg}"
+  #     user node['current_user']
+  #   end
+  # end
 end
 
 rubies.each do |version, options|
@@ -43,8 +37,8 @@ rubies.each do |version, options|
   end
 end
 
-execute "making #{node["rvm"]["default_ruby"]} with rvm the default" do
-  not_if { node["sprout"]["rvm"]["default_ruby"].nil? }
-  command "#{::RVM_COMMAND} alias create default #{node["sprout"]["rvm"]["default_ruby"]}"
-  user node['current_user']
-end
+# execute "making #{node["rvm"]["default_ruby"]} with rvm the default" do
+#   not_if { node["sprout"]["rvm"]["default_ruby"].nil? }
+#   command "#{::RVM_COMMAND} alias create default #{node["sprout"]["rvm"]["default_ruby"]}"
+#   user node['current_user']
+# end

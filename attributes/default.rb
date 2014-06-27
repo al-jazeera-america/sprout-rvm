@@ -1,6 +1,6 @@
 node.default['sprout']['rvm'] = {
   'home' => "#{node['sprout']['home']}/.rvm",
-  'command' => '/usr/local/bin/rvm',
+  'command' => "#{node['sprout']['home']}/.rvm/bin/rvm",
   'rubies' => {
     '2.0.0-p481' => {},
     '2.1.2-p95' => {},
