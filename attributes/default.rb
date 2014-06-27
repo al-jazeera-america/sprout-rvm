@@ -15,3 +15,5 @@ node.default['sprout']['rvm'] = {
     }
   }
 }
+node.default['versions']['rvm'] = 'latest'
+

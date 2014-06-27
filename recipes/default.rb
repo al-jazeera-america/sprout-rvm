@@ -6,7 +6,7 @@ default_ruby = node['sprout']['rvm']['default_ruby']
 
 sprout_base_bash_it_enable_feature 'plugins/rvm'
 
-run_unless_marker_file_exists(marker_version_string_for("rvm")) do
+run_unless_marker_file_exists("rvm") do
   recursive_directories [RVM_HOME, 'src', 'rvm'] do
     owner node['current_user']
     recursive true
