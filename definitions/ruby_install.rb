@@ -11,12 +11,12 @@ define :ruby_install do
     command install_cmd
     user params[:user] || node['current_user']
     only_if params[:only_if] if params[:only_if]
-    not_if params[:not_if] || "#{rvm_cmd} versions | grep #{ruby_version}"
+    not_if params[:not_if] || "#{rvm_cmd} list | grep #{ruby_version}"
     env options[:env]
   end
 
   execute "check #{ruby_version}" do
-    command "#{rvm_cmd} versions | grep #{ruby_version}"
+    command "#{rvm_cmd} list | grep #{ruby_version}"
     user params[:user] || node['current_user']
   end
 end

@@ -21,6 +21,13 @@ run_unless_marker_file_exists("rvm") do
       environment( { 'HOME' => node['sprout']['home'] } )
     end
   end
+  
+  template "#{node['sprout']['home']}/.rvmrc" do
+    source 'rvmrc.erb'
+    owner node['current_user']
+    group node['etc']['passwd'][node['current_user']]['gid']
+    variables ( { :env_vars => node["rvm"]["rvmrc"]["env_vars"] } )
+  end
 
   # Do we want these?
   # %w{readline autoconf openssl zlib}.each do |rvm_pkg|

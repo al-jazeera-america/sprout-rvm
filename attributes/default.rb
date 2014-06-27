@@ -3,7 +3,7 @@ node.default['sprout']['rvm'] = {
   'command' => "#{node['sprout']['home']}/.rvm/bin/rvm",
   'rubies' => {
     '2.0.0-p481' => {},
-    '2.1.2-p95' => {},
+    '2.1.2' => {},
   },
   'default_ruby' => '2.0.0-p481'
 }
