@@ -7,7 +7,7 @@ node.default['sprout']['rvm'] = {
   },
   'default_ruby' => '2.0.0-p481'
 }
-node.default['rvm']['rvm_rc'] = {
+node.default['rvm']['rvmrc'] = {
   'env_vars' => {
     :rvm_silence_path_mismatch_check_flag => 1,
     :rvm_user_install_flag => 1,
