@@ -4,6 +4,8 @@ default_ruby = node['sprout']['rvm']['default_ruby']
 ::RVM_HOME = "#{node['sprout']['home']}/.rvm"
 ::RVM_COMMAND = "#{::RVM_HOME}/bin/rvm"
 
+# package 'ruby-build'
+
 sprout_base_bash_it_enable_feature 'plugins/rvm'
 
 run_unless_marker_file_exists("rvm") do
